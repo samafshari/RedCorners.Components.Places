@@ -41,6 +41,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Places_iOS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="..\RedCorners.Components.Places\RedCorners.Components.Places.projitems" Label="Shared" />

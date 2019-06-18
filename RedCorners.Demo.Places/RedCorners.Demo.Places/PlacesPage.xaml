@@ -17,7 +17,10 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <SearchBar Grid.Row="0" />
+            <SearchBar Grid.Row="0" Text="{Binding Query}" SearchCommand="{Binding SearchCommand}" />
+            <ScrollView Grid.Row="1">
+                <Label Text="{Binding Results}" />
+            </ScrollView>
         </Grid>
     </rf:TitledContentView>
 </rf:ContentPage2>

@@ -9,6 +9,7 @@
     <Import_RootNamespace>RedCorners.Components</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Place.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Places.cs" />
   </ItemGroup>
 </Project>
