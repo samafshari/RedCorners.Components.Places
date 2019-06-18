@@ -1,0 +1,1 @@
+nuget pack RedCorners.Components.Places.nuspec

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rf:ContentPage2
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:local="clr-namespace:RedCorners.Demo.Places"
+    mc:Ignorable="d"
+    x:Class="RedCorners.Demo.Places.PlacesPage">
+    <rf:ContentPage2.BindingContext>
+        <local:PlacesViewModel />
+    </rf:ContentPage2.BindingContext>
+    <rf:TitledContentView Title="Search" HasButton="False">
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <SearchBar Grid.Row="0" />
+        </Grid>
+    </rf:TitledContentView>
+</rf:ContentPage2>
