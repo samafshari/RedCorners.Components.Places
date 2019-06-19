@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GooglePlaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HerePlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HerePlaces.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NominatimPlace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NominatimPlaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Place.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Places.cs" />
   </ItemGroup>

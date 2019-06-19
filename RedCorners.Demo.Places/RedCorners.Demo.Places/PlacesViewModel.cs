@@ -74,6 +74,10 @@ namespace RedCorners.Demo.Places
             {
                 places = new GooglePlaces(Vars.GoogleApiKey);
             }
+            else if (i == 3)
+            {
+                places = new NominatimPlaces();
+            }
         }
     }
 }
