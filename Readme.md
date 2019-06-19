@@ -26,10 +26,10 @@ IPlaces places = new HerePlaces(Vars.HereAppId, Vars.HereAppCode);
 // OpenStreetMaps (Nominatim) API
 IPlaces places = new NominatimPlaces();
 
-// Query
+// Query, supported in MapKitPlaces, GooglePlaces, NominatimPlaces
 IEnumerable<Place> results = await places.SearchAsync("IKEA");
 
-// Query around a location
+// Query around a location, supported in MapKitPlaces, GooglePlaces, HerePlaces
 IEnumerable<Place> results = await places.SearchAsync("IKEA", 49.6232369, 6.0708212);
 ```
 
