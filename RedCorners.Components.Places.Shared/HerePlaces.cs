@@ -65,6 +65,7 @@ namespace RedCorners.Components
 
         readonly List<Cache> cache = new List<Cache>();
         const int CacheSize = 10;
+        public bool UseCache { get; set; } = true;
 
         public HerePlaces()
         {
@@ -102,7 +103,7 @@ namespace RedCorners.Components
             if (client == null) client = new RestClient(ApiUrl);
 
             var hit = cache.FirstOrDefault(x => x.Query == url);
-            if (hit != null)
+            if (hit != null || !UseCache)
             {
                 hit.Priority++;
                 return hit.Results;

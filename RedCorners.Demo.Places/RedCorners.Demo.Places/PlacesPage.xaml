@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Places.PlacesPage">
     <rf:ContentPage2.BindingContext>
-        <local:PlacesViewModel />
+        <local:PlacesViewModel x:Name="vm" />
     </rf:ContentPage2.BindingContext>
     <rf:TitledContentView Title="Search" HasButton="False">
         <Grid RowSpacing="0">
@@ -44,18 +44,16 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Text="Name:" />
-                                <Label Grid.Column="0" Grid.Row="1" Text="PhoneNumber:" />
-                                <Label Grid.Column="0" Grid.Row="2" Text="Url:" />
-                                <Label Grid.Column="0" Grid.Row="3" Text="Latitude:" />
-                                <Label Grid.Column="0" Grid.Row="4" Text="Longitude:" />
-                                <Label Grid.Column="0" Grid.Row="5" Text="Address:" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="Url:" />
+                                <Label Grid.Column="0" Grid.Row="2" Text="Latitude:" />
+                                <Label Grid.Column="0" Grid.Row="3" Text="Longitude:" />
+                                <Label Grid.Column="0" Grid.Row="4" Text="Address:" />
 
                                 <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding PhoneNumber}" />
-                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Url}" />
-                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Latitude}" />
-                                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Longitude}" />
-                                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Address}" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Url}" />
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Latitude}" />
+                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Longitude}" />
+                                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Address}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -63,7 +61,7 @@
             </ListView>
         </Grid>
         <rf:TitledContentView.ToolBar>
-            <StackLayout VerticalOptions="Center">
+            <StackLayout VerticalOptions="Center" BindingContext="{x:Reference vm}">
                 <ActivityIndicator
                     WidthRequest="32"
                     HeightRequest="32"

@@ -60,18 +60,18 @@ namespace RedCorners.Components
         {
             return new Place
             {
-                IsCurrentLocation = item.IsCurrentLocation,
+                //IsCurrentLocation = item.IsCurrentLocation,
+                //PhoneNumber = item.PhoneNumber,
+                //Street = item.Placemark?.PostalAddress?.Street,
+                //City = item.Placemark?.PostalAddress?.City,
+                //State = item.Placemark?.PostalAddress?.State,
+                //PostalCode = item.Placemark?.PostalAddress?.PostalCode,
+                //Country = item.Placemark?.PostalAddress?.Country,
                 Name = item.Name,
-                PhoneNumber = item.PhoneNumber,
                 Url = item.Url?.AbsoluteString,
                 Latitude = item.Placemark?.Location?.Coordinate.Latitude ?? 0,
                 Longitude = item.Placemark?.Location?.Coordinate.Longitude ?? 0,
                 HasCoordinates = item.Placemark?.Location?.Coordinate != null,
-                Street = item.Placemark?.PostalAddress?.Street,
-                City = item.Placemark?.PostalAddress?.City,
-                State = item.Placemark?.PostalAddress?.State,
-                PostalCode = item.Placemark?.PostalAddress?.PostalCode,
-                Country = item.Placemark?.PostalAddress?.Country,
                 Address = GetAddress(item.Placemark?.PostalAddress)
             };
         }

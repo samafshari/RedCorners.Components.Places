@@ -25,6 +25,7 @@ namespace RedCorners.Demo.Places
         {
             UpdateProvider(0);
             Status = Models.TaskStatuses.Success;
+            UpdateProperties();
         }
          
         public Command SearchCommand => new Command(async () =>
@@ -40,6 +41,8 @@ namespace RedCorners.Demo.Places
             }
 
             Results = await places.SearchAsync(Query, Vars.CenterLatitude, Vars.CenterLongitude);
+            if (Results == null)
+                Results = new List<Place> { new Place { Name = "Null" } };
             Status = Models.TaskStatuses.Success;
             UpdateProperties();
         });
@@ -66,6 +69,10 @@ namespace RedCorners.Demo.Places
             else if (i == 1)
             {
                 places = new HerePlaces(Vars.HereAppId, Vars.HereAppCode);
+            }
+            else if (i == 2)
+            {
+                places = new GooglePlaces(Vars.GoogleApiKey);
             }
         }
     }
