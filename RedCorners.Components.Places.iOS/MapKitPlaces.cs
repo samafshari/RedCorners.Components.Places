@@ -67,12 +67,13 @@ namespace RedCorners.Components
                 //State = item.Placemark?.PostalAddress?.State,
                 //PostalCode = item.Placemark?.PostalAddress?.PostalCode,
                 //Country = item.Placemark?.PostalAddress?.Country,
+                //Url = item.Url?.AbsoluteString,
                 Name = item.Name,
-                Url = item.Url?.AbsoluteString,
                 Latitude = item.Placemark?.Location?.Coordinate.Latitude ?? 0,
                 Longitude = item.Placemark?.Location?.Coordinate.Longitude ?? 0,
                 HasCoordinates = item.Placemark?.Location?.Coordinate != null,
-                Address = GetAddress(item.Placemark?.PostalAddress)
+                Address = GetAddress(item.Placemark?.PostalAddress),
+                Tag = item
             };
         }
 

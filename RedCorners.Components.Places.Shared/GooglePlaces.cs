@@ -125,7 +125,7 @@ namespace RedCorners.Components
                 Latitude = item.Latitude,
                 Longitude = item.Longitude,
                 Name = item.Name,
-                Url = item.Icon
+                Tag = item
             };
         }
 

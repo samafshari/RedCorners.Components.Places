@@ -164,7 +164,8 @@ namespace RedCorners.Components
                 HasCoordinates = true,
                 Latitude = item.Latitude,
                 Longitude = item.Longitude,
-                Name = item.Name
+                Name = item.Name,
+                Tag = item
             };
         }
     }

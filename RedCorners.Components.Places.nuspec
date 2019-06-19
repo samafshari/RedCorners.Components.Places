@@ -11,9 +11,9 @@
 		<iconUrl>http://ooze.redcorners.com/redcorners_components_places_logo.png</iconUrl>
 		<license type="file">LICENSE.txt</license>
     <projectUrl>https://github.com/saeedafshari/RedCorners.Components.Places</projectUrl>
-  	<description>MapKit/Google/HERE Places search</description>
-		<summary>MapKit/Google/HERE Places search</summary>
-		<tags>places search xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
+  	<description>Unified library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim Places search.</description>
+		<summary>Unified library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim Places search.</summary>
+		<tags>places mapkit here places search api xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
 		<dependencies>
 		  <group>
 			<dependency id="RedCorners" version="4.10.0" />

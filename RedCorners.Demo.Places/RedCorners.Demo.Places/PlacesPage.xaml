@@ -44,16 +44,14 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Grid.Row="0" Text="Name:" />
-                                <Label Grid.Column="0" Grid.Row="1" Text="Url:" />
-                                <Label Grid.Column="0" Grid.Row="2" Text="Latitude:" />
-                                <Label Grid.Column="0" Grid.Row="3" Text="Longitude:" />
-                                <Label Grid.Column="0" Grid.Row="4" Text="Address:" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="Latitude:" />
+                                <Label Grid.Column="0" Grid.Row="2" Text="Longitude:" />
+                                <Label Grid.Column="0" Grid.Row="3" Text="Address:" />
 
                                 <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
-                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Url}" />
-                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Latitude}" />
-                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Longitude}" />
-                                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Address}" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding Latitude}" />
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Longitude}" />
+                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Address}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

@@ -165,10 +165,10 @@ namespace RedCorners.Components
             {
                 Name = item.Title,
                 Address = item.Vicinity,
-                Url = item.Href,
                 Latitude = item.Latitude,
                 Longitude = item.Longitude,
-                HasCoordinates = true
+                HasCoordinates = true,
+                Tag = item
             };
         }
     }
