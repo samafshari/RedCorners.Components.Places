@@ -15,12 +15,63 @@
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <SearchBar Grid.Row="0" Text="{Binding Query}" SearchCommand="{Binding SearchCommand}" />
-            <ScrollView Grid.Row="1">
-                <Label Text="{Binding Results}" />
-            </ScrollView>
+            <rf:TabBar 
+                Grid.Row="1"
+                ImageButtonStyle="Text"
+                Orientation="Horizontal"
+                SelectedTextColor="DarkGreen"
+                SelectedIndex="0"
+                SelectedIndexChangeCommand="{Binding PlaceChangeCommand}">
+                <rf:TabBarItem Text="MapKit" Opacity="1.0" />
+                <rf:TabBarItem Text="HERE" Opacity="1.0" />
+                <rf:TabBarItem Text="Google" Opacity="1.0" />
+                <rf:TabBarItem Text="OSM" Opacity="1.0" />
+            </rf:TabBar>
+            <ListView 
+                Grid.Row="2"
+                ItemsSource="{Binding Results}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid VerticalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Text="Name:" />
+                                <Label Grid.Column="0" Grid.Row="1" Text="PhoneNumber:" />
+                                <Label Grid.Column="0" Grid.Row="2" Text="Url:" />
+                                <Label Grid.Column="0" Grid.Row="3" Text="Latitude:" />
+                                <Label Grid.Column="0" Grid.Row="4" Text="Longitude:" />
+                                <Label Grid.Column="0" Grid.Row="5" Text="Address:" />
+
+                                <Label Grid.Column="1" Grid.Row="0" Text="{Binding Name}" />
+                                <Label Grid.Column="1" Grid.Row="1" Text="{Binding PhoneNumber}" />
+                                <Label Grid.Column="1" Grid.Row="2" Text="{Binding Url}" />
+                                <Label Grid.Column="1" Grid.Row="3" Text="{Binding Latitude}" />
+                                <Label Grid.Column="1" Grid.Row="4" Text="{Binding Longitude}" />
+                                <Label Grid.Column="1" Grid.Row="5" Text="{Binding Address}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
+        <rf:TitledContentView.ToolBar>
+            <StackLayout VerticalOptions="Center">
+                <ActivityIndicator
+                    WidthRequest="32"
+                    HeightRequest="32"
+                    IsRunning="True"
+                    IsEnabled="True"
+                    Color="White"
+                    IsVisible="{Binding IsBusy}" />
+            </StackLayout>
+        </rf:TitledContentView.ToolBar>
     </rf:TitledContentView>
 </rf:ContentPage2>

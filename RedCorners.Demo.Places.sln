@@ -15,18 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{82B7ECD0-954
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCorners.Components.Places.iOS", "RedCorners.Components.Places.iOS\RedCorners.Components.Places.iOS.csproj", "{4523133F-3F23-4619-BD38-BFC10FA95E34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCorners.Components.Places.Android", "RedCorners.Components.Places.Android\RedCorners.Components.Places.Android.csproj", "{D130C229-2A48-4681-B402-0A5EDBF1B531}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RedCorners.Components.Places.Shared", "RedCorners.Components.Places.Shared\RedCorners.Components.Places.Shared.shproj", "{3BE894FF-2B25-4383-8421-BD899E32BADB}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "RedCorners.Components.Places", "RedCorners.Components.Places\RedCorners.Components.Places.shproj", "{3BE894FF-2B25-4383-8421-BD899E32BADB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RedCorners.Components.Places", "RedCorners.Components.Places\RedCorners.Components.Places.csproj", "{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		RedCorners.Components.Places\RedCorners.Components.Places.projitems*{3be894ff-2b25-4383-8421-bd899e32badb}*SharedItemsImports = 13
-		RedCorners.Components.Places\RedCorners.Components.Places.projitems*{4523133f-3f23-4619-bd38-bfc10fa95e34}*SharedItemsImports = 4
+		RedCorners.Components.Places.Shared\RedCorners.Components.Places.Shared.projitems*{3be894ff-2b25-4383-8421-bd899e32badb}*SharedItemsImports = 13
 		RedCorners.Demo.Places\RedCorners.Demo.Places\RedCorners.Demo.Places.projitems*{6b14f772-3d41-4426-8dbc-ecd01e11fedb}*SharedItemsImports = 13
 		RedCorners.Demo.Places\RedCorners.Demo.Places\RedCorners.Demo.Places.projitems*{817d0551-407d-43b4-8ef4-b1285d0b8508}*SharedItemsImports = 4
-		RedCorners.Components.Places\RedCorners.Components.Places.projitems*{d130c229-2a48-4681-b402-0a5edbf1b531}*SharedItemsImports = 4
-		RedCorners.Demo.Places\RedCorners.Demo.Places\RedCorners.Demo.Places.projitems*{fdd66ecb-821d-442c-ac50-fba448754e76}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,18 +82,18 @@ Global
 		{4523133F-3F23-4619-BD38-BFC10FA95E34}.Release|iPhone.Build.0 = Release|Any CPU
 		{4523133F-3F23-4619-BD38-BFC10FA95E34}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{4523133F-3F23-4619-BD38-BFC10FA95E34}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|iPhone.Build.0 = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{D130C229-2A48-4681-B402-0A5EDBF1B531}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|iPhone.Build.0 = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,8 +103,8 @@ Global
 		{FDD66ECB-821D-442C-AC50-FBA448754E76} = {6A79FCE0-536A-4D34-9E68-C52DB10CFE6D}
 		{6B14F772-3D41-4426-8DBC-ECD01E11FEDB} = {6A79FCE0-536A-4D34-9E68-C52DB10CFE6D}
 		{4523133F-3F23-4619-BD38-BFC10FA95E34} = {82B7ECD0-9549-4408-A9B5-70602BFDE55E}
-		{D130C229-2A48-4681-B402-0A5EDBF1B531} = {82B7ECD0-9549-4408-A9B5-70602BFDE55E}
 		{3BE894FF-2B25-4383-8421-BD899E32BADB} = {82B7ECD0-9549-4408-A9B5-70602BFDE55E}
+		{CD41AEC0-E137-4889-90BD-C278A4CDC5BD} = {82B7ECD0-9549-4408-A9B5-70602BFDE55E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4866003-B008-4B13-B6D0-1DC12B51C59C}

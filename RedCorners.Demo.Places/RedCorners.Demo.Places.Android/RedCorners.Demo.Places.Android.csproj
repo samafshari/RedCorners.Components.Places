@@ -106,9 +106,9 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\RedCorners.Components.Places.Android\RedCorners.Components.Places.Android.csproj">
-      <Project>{d130c229-2a48-4681-b402-0a5edbf1b531}</Project>
-      <Name>RedCorners.Components.Places.Android</Name>
+    <ProjectReference Include="..\..\RedCorners.Components.Places\RedCorners.Components.Places.csproj">
+      <Project>{cd41aec0-e137-4889-90bd-c278a4cdc5bd}</Project>
+      <Name>RedCorners.Components.Places</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\RedCorners.Demo.Places\RedCorners.Demo.Places.projitems" Label="Shared" />

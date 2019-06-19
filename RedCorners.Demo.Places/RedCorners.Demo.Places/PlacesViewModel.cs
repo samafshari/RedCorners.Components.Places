@@ -10,7 +10,9 @@ namespace RedCorners.Demo.Places
 {
     public class PlacesViewModel : BindableModel
     {
-        Components.Places places = new Components.Places();
+        IPlaces places = new HerePlaces(Vars.HereAppId, Vars.HereAppCode);
+
+        public List<Place> Results { get; set; } = new List<Place>();
 
         string _query = "";
         public string Query
@@ -19,22 +21,52 @@ namespace RedCorners.Demo.Places
             set => SetProperty(ref _query, value);
         }
 
-        string _results = "";
-        public string Results
-        {
-            get => _results;
-            set => SetProperty(ref _results, value);
-        }
-
         public PlacesViewModel()
         {
-
+            UpdateProvider(0);
+            Status = Models.TaskStatuses.Success;
         }
-
+         
         public Command SearchCommand => new Command(async () =>
         {
-            var results = await places.SearchAsync(Query);
-            Results = string.Join("\n", results.Select(x => x.ToString()));
+            Status = Models.TaskStatuses.Busy;
+            UpdateProperties();
+
+            if (places == null)
+            {
+                Results = new List<Place> { new Place { Name = "No Provider Selected." } };
+                UpdateProperties();
+                return;
+            }
+
+            Results = await places.SearchAsync(Query, Vars.CenterLatitude, Vars.CenterLongitude);
+            Status = Models.TaskStatuses.Success;
+            UpdateProperties();
         });
+
+        public Command<int> PlaceChangeCommand => new Command<int>(i =>
+        {
+            UpdateProvider(i);
+        });
+
+        void UpdateProvider(int i)
+        {
+            // 0=mapkit
+            // 1=here
+            // 2=google
+            // 3=osm
+            if (i == 0)
+            {
+#if __IOS__
+                places = new MapKitPlaces();
+#else
+                places = null;
+#endif
+            }
+            else if (i == 1)
+            {
+                places = new HerePlaces(Vars.HereAppId, Vars.HereAppCode);
+            }
+        }
     }
 }

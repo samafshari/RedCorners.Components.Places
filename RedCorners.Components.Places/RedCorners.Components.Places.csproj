@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <Import Project="..\RedCorners.Components.Places.Shared\RedCorners.Components.Places.Shared.projitems" Label="Shared" />
+
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.12.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="RestSharp" Version="106.6.9" />
+  </ItemGroup>
+
+</Project>

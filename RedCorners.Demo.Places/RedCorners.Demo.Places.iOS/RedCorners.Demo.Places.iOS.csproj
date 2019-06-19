@@ -143,6 +143,10 @@
       <IsAppExtension>false</IsAppExtension>
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
+    <ProjectReference Include="..\..\RedCorners.Components.Places\RedCorners.Components.Places.csproj">
+      <Project>{cd41aec0-e137-4889-90bd-c278a4cdc5bd}</Project>
+      <Name>RedCorners.Components.Places</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\RedCorners.Demo.Places\RedCorners.Demo.Places.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

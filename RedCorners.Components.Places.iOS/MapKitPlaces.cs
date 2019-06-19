@@ -11,14 +11,25 @@ using Contacts;
 
 namespace RedCorners.Components
 {
-    public partial class Places
+    public partial class MapKitPlaces : IPlaces
     {
         public async Task<List<Place>> SearchAsync(string query)
         {
-            return (await SearchAsync(query, false, 0, 0)).ToList();
+            return 
+                (await SearchAsync(query, false, 0, 0))
+                .Select(x => MKToPlace(x))
+                .ToList();
         }
 
-        static async Task<IEnumerable<Place>> SearchAsync(
+        public async Task<List<Place>> SearchAsync(string query, double centerLatitude, double centerLongitude)
+        {
+            return 
+                (await SearchAsync(query, true, centerLatitude, centerLongitude))
+                .Select(x => MKToPlace(x))
+                .ToList();
+        }
+
+        public async Task<IEnumerable<MKMapItem>> SearchAsync(
             string query, 
             bool aroundRegion,
             double centerLatitude, 
@@ -42,10 +53,10 @@ namespace RedCorners.Components
             if (response == null) return null;
             if (response.MapItems == null) return null;
 
-            return response.MapItems.Select(x => MKToPlace(x));
+            return response.MapItems;
         }
 
-        static Place MKToPlace(MKMapItem item)
+        public static Place MKToPlace(MKMapItem item)
         {
             return new Place
             {
@@ -66,6 +77,7 @@ namespace RedCorners.Components
         }
 
         static CNPostalAddressFormatter Formatter = new CNPostalAddressFormatter();
+
         static string GetAddress(CNPostalAddress address)
         {
             if (address == null) return null;

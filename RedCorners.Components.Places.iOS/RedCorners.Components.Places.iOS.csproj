@@ -11,7 +11,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>RedCorners.Components</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>RedCorners.Components.Places</AssemblyName>
+    <AssemblyName>RedCorners.Components.Places.iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,9 +41,14 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Places_iOS.cs" />
+    <Compile Include="MapKitPlaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <Import Project="..\RedCorners.Components.Places\RedCorners.Components.Places.projitems" Label="Shared" />
+  <ItemGroup>
+    <ProjectReference Include="..\RedCorners.Components.Places\RedCorners.Components.Places.csproj">
+      <Project>{cd41aec0-e137-4889-90bd-c278a4cdc5bd}</Project>
+      <Name>RedCorners.Components.Places</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
