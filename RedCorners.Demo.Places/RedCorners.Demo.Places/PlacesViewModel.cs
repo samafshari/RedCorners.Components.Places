@@ -30,15 +30,15 @@ namespace RedCorners.Demo.Places
          
         public Command SearchCommand => new Command(async () =>
         {
-            Status = Models.TaskStatuses.Busy;
-            UpdateProperties();
-
             if (places == null)
             {
                 Results = new List<Place> { new Place { Name = "No Provider Selected." } };
                 UpdateProperties();
                 return;
             }
+
+            Status = Models.TaskStatuses.Busy;
+            UpdateProperties();
 
             if (places is NominatimPlaces)
                 Results = await places.SearchAsync(Query);

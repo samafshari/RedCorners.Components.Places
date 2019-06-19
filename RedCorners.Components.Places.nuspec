@@ -3,7 +3,7 @@
 	<metadata minClientVersion="2.8.3">
 		<id>RedCorners.Components.Places</id>
 		<title>RedCorners.Components.Places</title>
-		<version>0.3-alpha</version>
+		<version>4.10.0</version>
 		<releaseNotes>	</releaseNotes>
 		<authors>Saeed Afshari and NeatCapital OÜ</authors>
 		<owners>NeatCapital OÜ</owners>
@@ -11,12 +11,11 @@
 		<iconUrl>http://ooze.redcorners.com/redcorners_components_places_logo.png</iconUrl>
 		<license type="file">LICENSE.txt</license>
     <projectUrl>https://github.com/saeedafshari/RedCorners.Components.Places</projectUrl>
-  	<description>Unified library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim Places search.</description>
-		<summary>Unified library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim Places search.</summary>
+  	<description>Unified Places search library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim.</description>
+		<summary>Unified Places search library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim.</summary>
 		<tags>places mapkit here places search api xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
 		<dependencies>
 		  <group>
-			<dependency id="RedCorners" version="4.10.0" />
 			<dependency id="Newtonsoft.Json" version="12.0.2" />
 			<dependency id="RestSharp" version="106.6.9" />
 			<dependency id="AngleSharp" version="0.12.1" />
@@ -26,6 +25,7 @@
 		<references>
 		  <group targetFramework="Xamarin.iOS10">
 			<reference file="RedCorners.Components.Places.dll" />
+			<reference file="RedCorners.Components.Places.iOS.dll" />
 		  </group>
 		</references>
 	</metadata>
@@ -36,9 +36,12 @@
     	<!--netstandard-->
 		<file 
 			src="RedCorners.Components.Places\bin\Release\netstandard2.0\RedCorners.Components.Places.dll" 
-			target="lib\netstandard2.0" />
+			target="lib\netstandard2.0\RedCorners.Components.Places.dll" />
 
 		<!--Xamarin.iOS-->
+		<file 
+			src="RedCorners.Components.Places.iOS\bin\Release\RedCorners.Components.Places.dll" 
+			target="lib\Xamarin.iOS10\RedCorners.Components.Places.dll" />
 		<file 
 			src="RedCorners.Components.Places.iOS\bin\Release\RedCorners.Components.Places.iOS.dll" 
 			target="lib\Xamarin.iOS10\RedCorners.Components.Places.iOS.dll" />
