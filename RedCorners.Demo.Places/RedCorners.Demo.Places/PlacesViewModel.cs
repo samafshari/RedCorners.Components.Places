@@ -40,7 +40,11 @@ namespace RedCorners.Demo.Places
                 return;
             }
 
-            Results = await places.SearchAsync(Query, Vars.CenterLatitude, Vars.CenterLongitude);
+            if (places is NominatimPlaces)
+                Results = await places.SearchAsync(Query);
+            else
+                Results = await places.SearchAsync(Query, Vars.CenterLatitude, Vars.CenterLongitude);
+
             if (Results == null)
                 Results = new List<Place> { new Place { Name = "Null" } };
             Status = Models.TaskStatuses.Success;

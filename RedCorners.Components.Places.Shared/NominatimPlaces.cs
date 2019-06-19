@@ -56,6 +56,9 @@ namespace RedCorners.Components
             if (string.IsNullOrWhiteSpace(ApiUrl))
                 throw new ArgumentNullException("Please specify the ApiUrl");
 
+            if (aroundRegion)
+                throw new ArgumentException("Nominatim search around a location is not yet supported. Remove the coordinates and try again.");
+
             string locationQuery = "";
             if (aroundRegion)
                 locationQuery = $" near [{centerLatitude},{centerLongitude}]";
