@@ -23,6 +23,7 @@
                 Grid.Row="1"
                 ImageButtonStyle="Text"
                 Orientation="Horizontal"
+                TextColor="Black"
                 SelectedTextColor="DarkGreen"
                 SelectedIndex="0"
                 SelectedIndexChangeCommand="{Binding PlaceChangeCommand}">
