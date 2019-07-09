@@ -41,6 +41,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MapKitLocalSearchPlaces.cs" />
     <Compile Include="MapKitPlaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

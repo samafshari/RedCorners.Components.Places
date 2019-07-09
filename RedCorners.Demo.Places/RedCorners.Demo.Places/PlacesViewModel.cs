@@ -82,6 +82,14 @@ namespace RedCorners.Demo.Places
             {
                 places = new NominatimPlaces();
             }
+            else if (i == 4)
+            {
+#if __IOS__
+                places = new MapKitLocalSearchPlaces();
+#else
+                places = null;
+#endif
+            }
         }
     }
 }

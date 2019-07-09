@@ -13,6 +13,9 @@ namespace RedCorners.Components
 {
     public partial class MapKitPlaces : IPlaces
     {
+        public double DeltaLatitude { get; set; } = 0.25;
+        public double DeltaLongitude { get; set; } = 0.25;
+
         public async Task<List<Place>> SearchAsync(string query)
         {
             return 
@@ -24,7 +27,7 @@ namespace RedCorners.Components
         public async Task<List<Place>> SearchAsync(string query, double centerLatitude, double centerLongitude)
         {
             return 
-                (await SearchAsync(query, true, centerLatitude, centerLongitude))
+                (await SearchAsync(query, true, centerLatitude, centerLongitude, DeltaLatitude, DeltaLongitude))
                 .Select(x => MKToPlace(x))
                 .ToList();
         }
@@ -79,7 +82,7 @@ namespace RedCorners.Components
 
         static CNPostalAddressFormatter Formatter = new CNPostalAddressFormatter();
 
-        static string GetAddress(CNPostalAddress address)
+        internal static string GetAddress(CNPostalAddress address)
         {
             if (address == null) return null;
             return Formatter.GetStringFromPostalAddress(address);
