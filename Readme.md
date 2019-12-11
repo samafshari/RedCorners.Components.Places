@@ -2,7 +2,7 @@
 
 NuGet: [https://www.nuget.org/packages/RedCorners.Components.Places](https://www.nuget.org/packages/RedCorners.Components.Places)
 
-GitHub: [https://github.com/saeedafshari/RedCorners.Components.Places](https://github.com/saeedafshari/RedCorners.Components.Places)
+GitHub: [https://github.com/samafshari/RedCorners.Components.Places](https://github.com/samafshari/RedCorners.Components.Places)
 
 This library provides a unified interface for performing a places search. It also contains the implementations for the following APIs:
 
