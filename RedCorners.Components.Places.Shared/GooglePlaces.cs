@@ -149,7 +149,7 @@ namespace RedCorners.Components
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
 
 
-            var results = JsonConvert.DeserializeObject<PlaceDetailsResult>(response.Content)?.address_components
+            var results = JsonConvert.DeserializeObject<PlaceDetailsResponse>(response.Content)?.result?.address_components
                .Select(x => new GoogleAddressComponent
                {
                    LongName = x.long_name,
@@ -224,6 +224,11 @@ namespace RedCorners.Components
         #endregion
 
         #region place details models
+        class PlaceDetailsResponse
+        {
+            public PlaceDetailsResult result { get; set; }
+        }
+
         class PlaceDetailsResult
         {
             public address_component[] address_components { get; set; }
@@ -241,6 +246,8 @@ namespace RedCorners.Components
             public string LongName { get; set; }
             public string ShortName { get; set; }
             public string[] Types { get; set; }
+
+            public override string ToString() => LongName;
         }
         #endregion
     }

@@ -45,6 +45,12 @@ namespace RedCorners.Demo.Places
             else
                 Results = await places.SearchAsync(Query, Vars.CenterLatitude, Vars.CenterLongitude);
 
+            if (places is GooglePlaces g)
+            {
+                var p = Results[0].Tag as GooglePlace;
+                if (p != null)
+                await g.QueryAddressComponentsAsync(p.PlaceId);
+            }
             if (Results == null)
                 Results = new List<Place> { new Place { Name = "Null" } };
             Status = Models.TaskStatuses.Success;
