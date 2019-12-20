@@ -24,6 +24,16 @@ namespace RedCorners.Components
             public List<GooglePlace> Results { get; set; }
         }
 
+        class AddressCache
+        {
+            public int Priority { get; set; }
+            public string Query { get; set; }
+            public GoogleAddressComponent[] Results { get; set; }
+        }
+
+
+        readonly List<AddressCache> addressCache = new List<AddressCache>();
+
         readonly List<Cache> cache = new List<Cache>();
         const int CacheSize = 10;
 
@@ -116,6 +126,58 @@ namespace RedCorners.Components
             return results;
         }
 
+        public async Task<GoogleAddressComponent[]> QueryAddressComponentsAsync(string placeId)
+        {
+            if (string.IsNullOrWhiteSpace(ApiKey))
+                throw new ArgumentNullException("Please specify the ApiKey for the Google API");
+
+            var url = "details/json?" +
+                $"place_id={placeId}&" +
+                $"key={ApiKey}";
+
+            if (client == null) client = new RestClient(ApiUrl);
+
+            var hit = addressCache.FirstOrDefault(x => x.Query == placeId);
+            if (hit != null || !UseCache)
+            {
+                hit.Priority++;
+                return hit.Results;
+            }
+
+            var request = new RestRequest(url, Method.GET);
+            var response = await client.ExecuteTaskAsync(request);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
+
+
+            var results = JsonConvert.DeserializeObject<PlaceDetailsResult>(response.Content)?.address_components
+               .Select(x => new GoogleAddressComponent
+               {
+                   LongName = x.long_name,
+                   ShortName = x.short_name,
+                   Types = x.types
+               })
+               ?.ToArray();
+
+            while (addressCache.Count > CacheSize)
+            {
+                var leastValuedItem = addressCache.OrderByDescending(x => x.Priority).First();
+                addressCache.Remove(leastValuedItem);
+            }
+
+            foreach (var item in addressCache)
+            {
+                item.Priority++;
+            }
+
+            addressCache.Add(new AddressCache
+            {
+                Query = url,
+                Results = results
+            });
+
+            return results;
+        }
+
         public static Place GooglePlaceToPlace(GooglePlace item)
         {
             return new Place
@@ -129,6 +191,7 @@ namespace RedCorners.Components
             };
         }
 
+        #region textsearch models
         class GoogleSearchResults
         {
             public List<Candidate> results { get; set; }
@@ -158,5 +221,27 @@ namespace RedCorners.Components
             public double lat { get; set; }
             public double lng { get; set; }
         }
+        #endregion
+
+        #region place details models
+        class PlaceDetailsResult
+        {
+            public address_component[] address_components { get; set; }
+        }
+
+        class address_component
+        {
+            public string long_name { get; set; }
+            public string short_name { get; set; }
+            public string[] types { get; set; }
+        }
+
+        public class GoogleAddressComponent
+        {
+            public string LongName { get; set; }
+            public string ShortName { get; set; }
+            public string[] Types { get; set; }
+        }
+        #endregion
     }
 }
