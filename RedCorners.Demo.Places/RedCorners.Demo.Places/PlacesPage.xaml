@@ -17,6 +17,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <SearchBar Grid.Row="0" Text="{Binding Query}" SearchCommand="{Binding SearchCommand}" />
             <rf:TabBar 

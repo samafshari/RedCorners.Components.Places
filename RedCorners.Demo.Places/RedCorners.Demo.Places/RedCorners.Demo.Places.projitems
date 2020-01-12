@@ -10,6 +10,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OverpassPage.xaml.cs">
+      <DependentUpon>OverpassPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)OverpassViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlacesPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -26,5 +31,11 @@
     <Compile Update="E:\Projects\RedCorners.Places\RedCorners.Demo.Places\RedCorners.Demo.Places\PlacesPage.xaml.cs">
       <DependentUpon>PlacesPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)OverpassPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
