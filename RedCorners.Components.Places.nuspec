@@ -3,22 +3,22 @@
 	<metadata minClientVersion="2.8.3">
 		<id>RedCorners.Components.Places</id>
 		<title>RedCorners.Components.Places</title>
-		<version>6.15.0</version>
+		<version>6.16.0</version>
 		<releaseNotes>	</releaseNotes>
 		<authors>NeatCapital OÜ</authors>
 		<owners>NeatCapital OÜ</owners>
-		<copyright>Copyright 2019 NeatCapital OÜ</copyright>
+		<copyright>Copyright 2019-2020 NeatCapital OÜ</copyright>
 		<iconUrl>http://ooze.redcorners.com/redcorners_components_places_logo.png</iconUrl>
 		<license type="file">LICENSE.txt</license>
 		<icon>redcorners_components_places_logo.png</icon>
     <projectUrl>http://redcorners.com/places/</projectUrl>
   	<description>Unified Places search library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim.</description>
 		<summary>Unified Places search library for MapKit (iOS), Google, HERE and OpenStreetMaps Nominatim.</summary>
-		<tags>places mapkit here places search api xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
+		<tags>places osm mapkit here places search api xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
 		<dependencies>
 		  <group>
 			<dependency id="Newtonsoft.Json" version="12.0.3" />
-			<dependency id="RestSharp" version="106.6.10" />
+			<dependency id="RestSharp" version="106.10.1" />
 			<dependency id="AngleSharp" version="0.13.0" />
 		  </group>
 		</dependencies>

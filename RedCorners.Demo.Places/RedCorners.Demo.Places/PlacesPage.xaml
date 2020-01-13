@@ -17,7 +17,6 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <SearchBar Grid.Row="0" Text="{Binding Query}" SearchCommand="{Binding SearchCommand}" />
             <rf:TabBar 
@@ -63,6 +62,11 @@
         </Grid>
         <rf:TitledContentView.ToolBar>
             <StackLayout VerticalOptions="Center" BindingContext="{x:Reference vm}">
+                <Button Text="Map">
+                    <Button.Command>
+                        <rf:PageCommand PageType="{Type local:OverpassPage}" />
+                    </Button.Command>
+                </Button>
                 <ActivityIndicator
                     WidthRequest="32"
                     HeightRequest="32"

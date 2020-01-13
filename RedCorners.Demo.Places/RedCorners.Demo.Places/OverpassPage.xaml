@@ -5,10 +5,18 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:rf="clr-namespace:RedCorners.Forms;assembly=RedCorners.Forms"
+    xmlns:map="clr-namespace:RedCorners.Forms.GoogleMaps;assembly=RedCorners.Forms.GoogleMaps"
     xmlns:local="clr-namespace:RedCorners.Demo.Places"
     mc:Ignorable="d"
     x:Class="RedCorners.Demo.Places.OverpassPage">
+    <ContentPage.BindingContext>
+        <local:OverpassViewModel />
+    </ContentPage.BindingContext>
     <Grid>
-        <Label Text="Hello, OverpassPage!" />
+        <map:Map
+            ItemsSource="{Binding Items}"
+            RegionChangeAction="{Binding RegionChangeAction}"
+            MapIdledCommand="{Binding MapIdledCommand}"
+            />
     </Grid>
 </rf:ContentPage2>

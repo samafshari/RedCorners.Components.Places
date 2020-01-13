@@ -78,7 +78,7 @@ namespace RedCorners.Components
             }
 
             var request = new RestRequest(url, Method.GET);
-            var response = await client.ExecuteTaskAsync(request);
+            var response = await client.ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
 
             var results = JsonConvert.DeserializeObject<NominatimResult>(response.Content)?.features?
