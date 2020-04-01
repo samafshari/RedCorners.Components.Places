@@ -1,0 +1,44 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OTMDemo"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="OTMDemo.MainWindow"
+        mc:Ignorable="d"
+        Title="OTMTest" Height="450" Width="800">
+    <d:DataContext>
+        <local:MainWindow />
+    </d:DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" Text="{Binding Query}" />
+            <Button x:Name="btnSearch" Grid.Column="1" Content="Search" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" x:Name="grdPlaces" AutoGenerateColumns="True" />
+            <syncfusion:PropertyGrid Grid.Column="1" x:Name="grdX" />
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <syncfusion:PropertyGrid Grid.Row="0" x:Name="grdPreview" />
+                <syncfusion:PropertyGrid Grid.Row="1" x:Name="grdWiki" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)NominatimPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NominatimPlaces.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AmenityNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OpenTripMapClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OpenTripMapPlace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OverpassClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Place.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Places.cs" />
