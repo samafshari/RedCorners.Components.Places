@@ -6,12 +6,12 @@ using static RedCorners.Components.OpenTripMapClient;
 
 namespace RedCorners.Components
 {
-    public class OpenTripMapPlace
+    public class OpenTripMapSimpleFeature
     {
         public string XId { get; set; }
         public string Name { get; set; }
         public double Distance { get; set; }
-        public int Rate { get; set; }
+        public string Rate { get; set; }
         public string Wikidata { get; set; }
         public string[] Kinds { get; set; }
         public double Latitude { get; set; }
@@ -29,7 +29,7 @@ namespace RedCorners.Components
         public string Timezone { get; set; }
     }
 
-    public class OpenTripMapX
+    public class OpenTripMapPlace
     {
         public string XId { get; set; }
         public string Name { get; set; }

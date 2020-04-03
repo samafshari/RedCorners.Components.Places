@@ -25,6 +25,13 @@ namespace OTMDemo
         OpenTripMapClient client;
 
         public string Query { get; set; }
+
+        public string ApiKey
+        {
+            get => client.ApiKey;
+            set => client.ApiKey = value;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -36,13 +43,14 @@ namespace OTMDemo
 
         private async void GrdPlaces_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = grdPlaces.SelectedItem as OpenTripMapPlace;
+            var item = grdPlaces.SelectedItem as OpenTripMapSimpleFeature;
             if (item == null) return;
 
-            var x = await client.GetXAsync(item.XId);
+            var x = await client.GetPlaceAsync(item.XId);
             grdX.SelectedObject = x;
             grdPreview.SelectedObject = x?.Preview;
             grdWiki.SelectedObject = x?.WikipediaExtracts;
+            browser.Navigate($"https://www.google.com/maps/@{x?.Latitude},{x?.Longitude},14z");
         }
 
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -50,12 +58,10 @@ namespace OTMDemo
             try
             {
                 var geoname = await client.GetGeoNameAsync(Query);
-                var places = await client.GetPlacesAroundAsync(
-                    geoname.Latitude,
-                    geoname.Longitude,
+                var places = await client.GetFeaturesAsync(
                     10000,
-                    100,
-                    2);
+                    geoname.Latitude,
+                    geoname.Longitude);
                 grdPlaces.ItemsSource = places;
             }
             catch (Exception ex)

@@ -24,27 +24,105 @@ namespace RedCorners.Components
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="latitude"></param>
-        /// <param name="longitude"></param>
+        /// <param name="lat"></param>
+        /// <param name="lon"></param>
         /// <param name="radius">in meters</param>
         /// <param name="rate"></param>
         /// <returns></returns>
-        public async Task<OpenTripMapPlace[]> GetPlacesAroundAsync(double latitude, double longitude, double radius, int limit, int rate)
+        public async Task<OpenTripMapSimpleFeature[]> GetFeaturesAsync(
+            double radius, 
+            double lat, 
+            double lon,
+            string name = null,
+            string kinds = null,
+            string rate = null,
+            int? limit = null)
         {
             var request = new RestRequest("radius", Method.GET);
             request.AddQueryParameter("apikey", ApiKey);
             request.AddQueryParameter("radius", radius.ToString());
-            request.AddQueryParameter("limit", limit.ToString());
-            request.AddQueryParameter("lat", latitude.ToString());
-            request.AddQueryParameter("lon", longitude.ToString());
-            request.AddQueryParameter("rate", rate.ToString());
+            request.AddQueryParameter("lat", lat.ToString());
+            request.AddQueryParameter("lon", lon.ToString());
+            if (name != null) request.AddQueryParameter("name", name);
+            if (kinds != null) request.AddQueryParameter("kinds", kinds);
+            if (rate != null) request.AddQueryParameter("rate", rate);
+            if (limit != null) request.AddQueryParameter("limit", limit.ToString());
             request.AddQueryParameter("format", "json");
             var response = await client.ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 return null;
 
-            var results = JsonConvert.DeserializeObject<Place[]>(response.Content);
-            return results.Select(x => new OpenTripMapPlace
+            var results = JsonConvert.DeserializeObject<SimpleFeature[]>(response.Content);
+            return Convert(results);
+        }
+
+        public async Task<OpenTripMapSimpleFeature[]> GetFeaturesAsync(
+            double lat_min,
+            double lat_max,
+            double lon_min,
+            double lon_max,
+            string name = null,
+            string kinds = null,
+            string rate = null,
+            int? limit = null)
+        {
+            var request = new RestRequest("bbox", Method.GET);
+            request.AddQueryParameter("apikey", ApiKey);
+            request.AddQueryParameter("lon_min", lon_min.ToString());
+            request.AddQueryParameter("lon_max", lon_max.ToString());
+            request.AddQueryParameter("lat_min", lat_min.ToString());
+            request.AddQueryParameter("lat_max", lat_max.ToString());
+            if (name != null) request.AddQueryParameter("name", name);
+            if (kinds != null) request.AddQueryParameter("kinds", kinds);
+            if (rate != null) request.AddQueryParameter("rate", rate);
+            if (limit != null) request.AddQueryParameter("limit", limit.ToString());
+            request.AddQueryParameter("format", "json");
+            var response = await client.ExecuteAsync(request);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                return null;
+
+            var results = JsonConvert.DeserializeObject<SimpleFeature[]>(response.Content);
+            return Convert(results);
+        }
+
+        public enum Props
+        {
+            Base,
+            Address
+        }
+
+        public async Task<OpenTripMapSimpleFeature[]> GetFeaturesAsync(
+            double radius,
+            double lat,
+            double lon,
+            string name,
+            Props props = Props.Base,
+            string kinds = null,
+            string rate = null,
+            int? limit = null)
+        {
+            var request = new RestRequest("bbox", Method.GET);
+            request.AddQueryParameter("apikey", ApiKey);
+            request.AddQueryParameter("name", name);
+            request.AddQueryParameter("radius", radius.ToString());
+            request.AddQueryParameter("lon", lon.ToString());
+            request.AddQueryParameter("lat", lat.ToString());
+            request.AddQueryParameter("props", props.ToString().ToLower());
+            if (kinds != null) request.AddQueryParameter("kinds", kinds);
+            if (rate != null) request.AddQueryParameter("rate", rate);
+            if (limit != null) request.AddQueryParameter("limit", limit.ToString());
+            request.AddQueryParameter("format", "json");
+            var response = await client.ExecuteAsync(request);
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                return null;
+
+            var results = JsonConvert.DeserializeObject<SimpleFeature[]>(response.Content);
+            return Convert(results);
+        }
+
+        OpenTripMapSimpleFeature[] Convert(SimpleFeature[] results)
+        {
+            return results.Select(x => new OpenTripMapSimpleFeature
             {
                 Distance = x.dist,
                 Kinds = x.kinds?.Split(','),
@@ -70,7 +148,7 @@ namespace RedCorners.Components
             return JsonConvert.DeserializeObject<OpenTripMapGeoName>(response.Content);
         }
 
-        public async Task<OpenTripMapX> GetXAsync(string xid)
+        public async Task<OpenTripMapPlace> GetPlaceAsync(string xid)
         {
             var request = new RestRequest($"xid/{xid}", Method.GET);
             request.AddQueryParameter("apikey", ApiKey);
@@ -79,7 +157,7 @@ namespace RedCorners.Components
                 return null;
 
             var result = JsonConvert.DeserializeObject<X>(response.Content);
-            return new OpenTripMapX
+            return new OpenTripMapPlace
             {
                 Address = result.address,
                 Image = result.image,
@@ -98,12 +176,12 @@ namespace RedCorners.Components
             };
         }
 
-        class Place
+        class SimpleFeature
         {
             public string xid { get; set; }
             public string name { get; set; }
             public double dist { get; set; }
-            public int rate { get; set; }
+            public string rate { get; set; }
             public string wikidata { get; set; }
             public string kinds { get; set; }
             public Point point { get; set; }

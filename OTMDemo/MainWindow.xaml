@@ -13,9 +13,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="API Key:" Grid.Column="0" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Text="{Binding ApiKey}" />
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="100" />
@@ -23,21 +32,25 @@
             <TextBox Grid.Column="0" Text="{Binding Query}" />
             <Button x:Name="btnSearch" Grid.Column="1" Content="Search" />
         </Grid>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <DataGrid Grid.Column="0" x:Name="grdPlaces" AutoGenerateColumns="True" />
-            <syncfusion:PropertyGrid Grid.Column="1" x:Name="grdX" />
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <syncfusion:PropertyGrid Grid.Row="0" x:Name="grdPreview" />
-                <syncfusion:PropertyGrid Grid.Row="1" x:Name="grdWiki" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <syncfusion:PropertyGrid Grid.Row="0" Grid.Column="1" x:Name="grdX" />
+                <syncfusion:PropertyGrid Grid.Row="0" Grid.Column="0" x:Name="grdPreview" />
+                <!--<WebBrowser Grid.Row="1" Grid.Column="0" x:Name="browser />-->
+                <syncfusion:PropertyGrid Grid.Row="1" Grid.Column="1" x:Name="grdWiki" />
             </Grid>
         </Grid>
     </Grid>
