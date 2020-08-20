@@ -1,0 +1,8 @@
+#@baseUrl = http://blaze.redcorners.com:801/api/interpreter
+@baseUrl = http://localhost:801/api/interpreter
+
+###
+POST {{baseUrl}}
+
+node["name"="Luxembourg"];
+out;

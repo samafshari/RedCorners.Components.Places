@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Diagnostics.Contracts;
+using System.Net.Http;
 
 namespace RedCorners.Components
 {
@@ -174,5 +176,42 @@ namespace RedCorners.Components
                 Tag = item
             };
         }
+
+        public async Task<NominatimReverse> ReverseAsync(double lat, double lon)
+        {
+            var url = $"{ApiUrl}reverse?lat={lat}&lon={lon}&format=json";
+            var client = new HttpClient();
+            var response = await client.GetStringAsync(url);
+            var obj = JsonConvert.DeserializeObject<NominatimReverse>(response);
+            return obj;
+        }
+    }
+
+    public class NominatimAddress
+    {
+        public string Road { get; set; }
+        public string Hamlet { get; set; }
+        public string Suburb { get; set; }
+        public string Town { get; set; }
+        public string City { get; set; }
+        public string Neighbourhood { get; set; }
+        public string District { get; set; }
+        public string County { get; set; }
+        public string State { get; set; }
+        [JsonProperty("postcode")] public string PostCode { get; set; }
+        public string Country { get; set; }
+        [JsonProperty("country_code")] public string CountryCode { get; set; }
+    }
+
+    public class NominatimReverse
+    {
+        [JsonProperty("place_id")] public string PlaceId { get; set; }
+        [JsonProperty("license")] public string License { get; set; }
+        [JsonProperty("osm_type")] public string OsmType { get; set; }
+        [JsonProperty("osm_id")] public string OsmId { get; set; }
+        [JsonProperty("lat")] public double Latitude { get; set; }
+        [JsonProperty("lon")] public double Longitude { get; set; }
+        [JsonProperty("display_name")] public string DisplayName { get; set; }
+        public NominatimAddress Address { get; set; }
     }
 }
