@@ -180,9 +180,9 @@ namespace RedCorners.Components
         public async Task<NominatimReverse> ReverseAsync(double lat, double lon)
         {
             var url = $"{ApiUrl}reverse?lat={lat}&lon={lon}&format=json";
-            var client = new HttpClient();
-            var response = await client.GetStringAsync(url);
-            var obj = JsonConvert.DeserializeObject<NominatimReverse>(response);
+            var client = new RestClient(url);
+            var response = await client.ExecuteAsync(new RestRequest());
+            var obj = JsonConvert.DeserializeObject<NominatimReverse>(response.Content);
             return obj;
         }
     }
