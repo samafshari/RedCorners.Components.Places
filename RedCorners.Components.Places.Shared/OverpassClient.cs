@@ -42,7 +42,27 @@ namespace RedCorners.Components
             return clients[Random.Next(clients.Length)];
         }
 
-        public async Task<AmenityNode[]> SearchAmenityNodes(string[] amenities, double plat, double plng, double qlat, double qlng, int? timeout = 10)
+        public async Task<AmenityPlace[]> SearchAmenityNodes(string[] amenities, double lat, double lng, double radius, int? timeout = 10)
+        {
+            return await SearchAmenities("node", amenities, lat, lng, radius, timeout);
+        }
+
+        public async Task<AmenityPlace[]> SearchAmenityNodes(string[] amenities, double plat, double plng, double qlat, double qlng, int? timeout = 10)
+        {
+            return await SearchAmenities("node", amenities, plat, plng, qlat, qlng, timeout);
+        }
+        
+        public async Task<AmenityPlace[]> SearchAmenityWays(string[] amenities, double lat, double lng, double radius, int? timeout = 10)
+        {
+            return await SearchAmenities("way", amenities, lat, lng, radius, timeout);
+        }
+
+        public async Task<AmenityPlace[]> SearchAmenityWays(string[] amenities, double plat, double plng, double qlat, double qlng, int? timeout = 10)
+        {
+            return await SearchAmenities("way", amenities, plat, plng, qlat, qlng, timeout);
+        }
+
+        async Task<AmenityPlace[]> SearchAmenities(string type, string[] amenities, double plat, double plng, double qlat, double qlng, int? timeout = 10)
         {
             var minLat = Math.Min(plat, qlat);
             var minLng = Math.Min(plng, qlng);
@@ -51,19 +71,19 @@ namespace RedCorners.Components
 
             var amenityQuery = "[\"amenity\"~\"" + string.Join("|", amenities) + "\"]";
             var timeoutQuery = timeout.HasValue ? $"[timeout:{timeout}]" : string.Empty;
-            var query = $"[out:json]{timeoutQuery};node {amenityQuery}({minLat},{minLng},{maxLat},{maxLng}); out body; >; out skel qt;";
+            var query = $"[out:json]{timeoutQuery};{type} {amenityQuery}({minLat},{minLng},{maxLat},{maxLng}); out body; >; out skel qt;";
             return await SearchAsync(query);
         }
 
-        public async Task<AmenityNode[]> SearchAmenityNodes(string[] amenities, double lat, double lng, double radius, int? timeout = 10)
+        async Task<AmenityPlace[]> SearchAmenities(string type, string[] amenities, double lat, double lng, double radius, int? timeout = 10)
         {
             var amenityQuery = "[\"amenity\"~\"" + string.Join("|", amenities) + "\"]";
             var timeoutQuery = timeout.HasValue ? $"[timeout:{timeout}]" : string.Empty;
-            var query = $"[out:json]{timeoutQuery};node {amenityQuery}(around: {radius*1000.0}, {lat},{lng}); out body; >; out skel qt;";
+            var query = $"[out:json]{timeoutQuery};{type} {amenityQuery}(around: {radius * 1000.0}, {lat},{lng}); out body; >; out skel qt;";
             return await SearchAsync(query);
         }
 
-        async Task<AmenityNode[]> SearchAsync(string query)
+        async Task<AmenityPlace[]> SearchAsync(string query)
         {
             var request = new RestRequest(Method.POST);
             request.AddParameter("text/plain", query, ParameterType.RequestBody);
@@ -71,25 +91,54 @@ namespace RedCorners.Components
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
             var overpassResponse = JsonConvert.DeserializeObject<OverpassResponse>(response.Content)?.elements;
             if (overpassResponse == null) return null;
-            return overpassResponse.Select(x => new AmenityNode
-            {
-                Amenity = x.tags?.FirstOrDefault(y => y.Key == "amenity").Value,
-                Id = x.id,
-                Latitude = x.lat,
-                Longitude = x.lon,
-                Tags = x.tags
+            var childNodes = new Dictionary<string, string[]>();
+            var results = overpassResponse.Select(x => {
+                var p = new AmenityPlace
+                {
+                    Amenity = x.tags?.FirstOrDefault(y => y.Key == "amenity").Value,
+                    Id = x.id,
+                    Latitude = x.lat,
+                    Longitude = x.lon,
+                    Tags = x.tags,
+                    Type =
+                        x.type == "node" ? AmenityPlaceType.Node :
+                        x.type == "way" ? AmenityPlaceType.Way :
+                        AmenityPlaceType.Unknown
+                };
+                childNodes[p.Id] = x.nodes;
+                return p;
             }).ToArray();
+            foreach (var result in results)
+            {
+                if (result.Type == AmenityPlaceType.Way)
+                {
+                    if (childNodes.ContainsKey(result.Id))
+                    {
+                        result.Nodes = childNodes[result.Id]
+                            .Select(x => results.FirstOrDefault(y => y.Id == x))
+                            .ToList();
+                    }
+                    if (result.Latitude == 0 && result.Longitude == 0 && 
+                        result.Nodes != null && result.Nodes.Count > 0)
+                    {
+                        result.Latitude = result.Nodes.Average(x => x.Latitude);
+                        result.Longitude = result.Nodes.Average(x => x.Longitude);
+                    }
+                }
+            }
+            return results;
         }
 
         class OverpassResponse
         {
-            public OverpassObject[] elements { get; set; }
+            public OverpassNode[] elements { get; set; }
         }
 
-        class OverpassObject
+        class OverpassNode
         {
-            public string type { get; set; } //= "node"
+            public string type { get; set; } //= "node", "way"
             public string id { get; set; }
+            public string[] nodes { get; set; }
             public double lat { get; set; }
             public double lon { get; set; }
             public Dictionary<string, string> tags { get; set; }
