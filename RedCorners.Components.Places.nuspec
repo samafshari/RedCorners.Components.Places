@@ -3,11 +3,11 @@
 	<metadata minClientVersion="2.8.3">
 		<id>RedCorners.Components.Places</id>
 		<title>RedCorners.Components.Places</title>
-		<version>8.25.0</version>
+		<version>8.26.0</version>
 		<releaseNotes>	</releaseNotes>
 		<authors>NeatCapital OÜ</authors>
 		<owners>NeatCapital OÜ</owners>
-		<copyright>Copyright 2019-2021 NeatCapital OÜ</copyright>
+		<copyright>Copyright 2019-2022 NeatCapital OÜ</copyright>
 		<iconUrl>http://ooze.redcorners.com/redcorners_components_places_logo.png</iconUrl>
 		<license type="file">LICENSE.txt</license>
 		<icon>redcorners_components_places_logo.png</icon>

@@ -201,7 +201,9 @@ namespace RedCorners.Components
         [JsonProperty("postcode")] public string PostCode { get; set; }
         public string Country { get; set; }
         [JsonProperty("country_code")] public string CountryCode { get; set; }
-        [JsonProperty("house_number")] public string HouseNumber { get; set; }
+        [JsonProperty("house_number")] public string House_Number { get; set; }
+        [JsonProperty("housenumber")] public string HouseNumber { get; set; }
+        [JsonProperty("house")] public string House { get; set; }
     }
 
     public class NominatimReverse
