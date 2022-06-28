@@ -15,7 +15,7 @@ namespace RedCorners.Components
             "https://lz4.overpass-api.de/api/interpreter",
             "https://z.overpass-api.de/api/interpreter",
             "http://overpass.openstreetmap.fr/api/interpreter",
-            "https://overpass.kumi.systems/api/interpreter"
+            //"https://overpass.kumi.systems/api/interpreter"
         };
 
         RestClient[] clients;
@@ -85,7 +85,7 @@ namespace RedCorners.Components
 
         async Task<AmenityPlace[]> SearchAsync(string query)
         {
-            var request = new RestRequest(Method.POST);
+            var request = new RestRequest("", Method.Post);
             request.AddParameter("text/plain", query, ParameterType.RequestBody);
             var response = await GetClient().ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;

@@ -109,7 +109,7 @@ namespace RedCorners.Components
                 return hit.Results;
             }
 
-            var request = new RestRequest(url, Method.GET);
+            var request = new RestRequest(url, Method.Get);
             var response = await client.ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
 
