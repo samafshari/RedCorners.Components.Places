@@ -34,7 +34,7 @@ namespace RedCorners.Components
 
         public NominatimPlaces(string apiUrl)
         {
-            this.ApiUrl = ApiUrl;
+            this.ApiUrl = apiUrl;
         }
 
         public async Task<List<Place>> SearchAsync(string query)
