@@ -85,7 +85,7 @@ namespace RedCorners.Components
 
         async Task<AmenityPlace[]> SearchAsync(string query)
         {
-            var request = new RestRequest("", Method.Post);
+            var request = new RestRequest("", Method.POST);
             request.AddParameter("text/plain", query, ParameterType.RequestBody);
             var response = await GetClient().ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;

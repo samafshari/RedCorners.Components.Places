@@ -82,7 +82,7 @@ namespace RedCorners.Components
                 return hit.Results;
             }
 
-            var request = new RestRequest(url, Method.Get);
+            var request = new RestRequest(url, Method.GET);
             var response = await client.ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK) return null;
 
@@ -145,7 +145,7 @@ namespace RedCorners.Components
             public string county { get; set; }
             public string country { get; set; }
             public string housenumber { get; set; }
-            public Dictionary<string, string> admin { get; set; }
+            public object admin { get; set; }
         }
 
         class NominatimProperties
