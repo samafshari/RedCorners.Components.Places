@@ -3,11 +3,11 @@
 	<metadata minClientVersion="2.8.3">
 		<id>RedCorners.Components.Places</id>
 		<title>RedCorners.Components.Places</title>
-		<version>30.0</version>
+		<version>31.0</version>
 		<releaseNotes>	</releaseNotes>
 		<authors>NeatCapital OÜ</authors>
 		<owners>NeatCapital OÜ</owners>
-		<copyright>Copyright 2019-2022 NeatCapital OÜ</copyright>
+		<copyright>Copyright 2019-2023 NeatCapital OÜ</copyright>
 		<iconUrl>http://ooze.redcorners.com/redcorners_components_places_logo.png</iconUrl>
 		<license type="file">LICENSE.txt</license>
 		<icon>redcorners_components_places_logo.png</icon>
@@ -17,9 +17,9 @@
 		<tags>places osm mapkit here places search api xamarin forms maps xamarinforms xamarinformsmaps xamarin.forms.maps xamarinformsgooglemaps RedCorners.Forms.GoogleMaps google googlemap redcorners</tags>
 		<dependencies>
 		  <group>
-			<dependency id="Newtonsoft.Json" version="13.0.1" />
-			<dependency id="RestSharp" version="106.15.0" />
-			<dependency id="AngleSharp" version="0.13.0" />
+			<dependency id="Newtonsoft.Json" version="13.0.3" />
+			<dependency id="RestSharp" version="110.2.0" />
+			<dependency id="AngleSharp" version="1.0.5" />
 		  </group>
 		</dependencies>
 	

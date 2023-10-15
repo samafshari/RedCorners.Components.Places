@@ -7,9 +7,6 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="OTMDemo.MainWindow"
         mc:Ignorable="d"
         Title="OTMTest" Height="450" Width="800">
-    <d:DataContext>
-        <local:MainWindow />
-    </d:DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -47,10 +44,10 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <syncfusion:PropertyGrid Grid.Row="0" Grid.Column="1" x:Name="grdX" />
-                <syncfusion:PropertyGrid Grid.Row="0" Grid.Column="0" x:Name="grdPreview" />
+                <!--<syncfusion:PropertyGrid Grid.Row="0" Grid.Column="1" x:Name="grdX" />-->
+                <!--<syncfusion:PropertyGrid Grid.Row="0" Grid.Column="0" x:Name="grdPreview" />-->
                 <!--<WebBrowser Grid.Row="1" Grid.Column="0" x:Name="browser />-->
-                <syncfusion:PropertyGrid Grid.Row="1" Grid.Column="1" x:Name="grdWiki" />
+                <!--<syncfusion:PropertyGrid Grid.Row="1" Grid.Column="1" x:Name="grdWiki" />-->
             </Grid>
         </Grid>
     </Grid>

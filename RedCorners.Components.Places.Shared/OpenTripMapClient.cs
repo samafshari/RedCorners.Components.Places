@@ -38,7 +38,7 @@ namespace RedCorners.Components
             string rate = null,
             int? limit = null)
         {
-            var request = new RestRequest("radius", Method.GET);
+            var request = new RestRequest("radius", Method.Get);
             request.AddQueryParameter("apikey", ApiKey);
             request.AddQueryParameter("radius", radius.ToString());
             request.AddQueryParameter("lat", lat.ToString());
@@ -66,7 +66,7 @@ namespace RedCorners.Components
             string rate = null,
             int? limit = null)
         {
-            var request = new RestRequest("bbox", Method.GET);
+            var request = new RestRequest("bbox", Method.Get);
             request.AddQueryParameter("apikey", ApiKey);
             request.AddQueryParameter("lon_min", lon_min.ToString());
             request.AddQueryParameter("lon_max", lon_max.ToString());
@@ -101,7 +101,7 @@ namespace RedCorners.Components
             string rate = null,
             int? limit = null)
         {
-            var request = new RestRequest("bbox", Method.GET);
+            var request = new RestRequest("bbox", Method.Get);
             request.AddQueryParameter("apikey", ApiKey);
             request.AddQueryParameter("name", name);
             request.AddQueryParameter("radius", radius.ToString());
@@ -138,7 +138,7 @@ namespace RedCorners.Components
 
         public async Task<OpenTripMapGeoName> GetGeoNameAsync(string query)
         {
-            var request = new RestRequest("geoname", Method.GET);
+            var request = new RestRequest("geoname", Method.Get);
             request.AddQueryParameter("apikey", ApiKey);
             request.AddQueryParameter("name", query);
             var response = await client.ExecuteAsync(request);
@@ -150,7 +150,7 @@ namespace RedCorners.Components
 
         public async Task<OpenTripMapPlace> GetPlaceAsync(string xid)
         {
-            var request = new RestRequest($"xid/{xid}", Method.GET);
+            var request = new RestRequest($"xid/{xid}", Method.Get);
             request.AddQueryParameter("apikey", ApiKey);
             var response = await client.ExecuteAsync(request);
             if (response.StatusCode != System.Net.HttpStatusCode.OK)
